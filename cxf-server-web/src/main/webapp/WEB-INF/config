@@ -1,0 +1,15 @@
+######################################################################
+JAX-WS RI（jaxws-rt)发布WebService web方式
+JAX-WS RI是一个轻量级的框架。虽然是个轻量级框架，
+JAX-WS RI也提供了在Web服务器中发布Webservice的功能。
+web_jws.xml,sun-jaxws.xml
+http://localhost:8080/cxf_server_web/jws_services?wsdl
+http://localhost:8080/cxf_server_web/cxf_services?wsdl
+
+#####################################################################
+cxf发布WebService web方式
+在pom.xml中添加CXF和spring Web的引用，由于CXFServlet需要Spring Web的支持。
+web_cxf.xml,cxf-servlet.xml
+http://localhost:8080/cxf_server_web/services
+http://localhost:8080/cxf_server_web/services/cxf_service?wsdl
+http://localhost:8080/cxf_server_web/services/jws_service?wsdl

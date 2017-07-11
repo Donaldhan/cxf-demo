@@ -1,0 +1,34 @@
+JDK中已经内置了Webservice发布，不过要用Tomcat等Web服务器发布WebService，
+还需要用第三方Webservice框架。Axis2和CXF是目前最流行的Webservice框架，
+这两个框架各有优点，不过都属于重量级框架。
+JAX-WS RI是JAX WebService参考实现。相对于Axis2和CXF，
+JAX-WS RI是一个轻量级的框架。虽然是个轻量级框架，
+JAX-WS RI也提供了在Web服务器中发布Webservice的功能。
+官网地址https://jax-ws.java.net/。下面用JAX-WS RI在Tomcat中发布WebService。
+
+新建一个Maven Web项目，在项目中添加JAX-WS RI引用，pom.xml配置文件如下
+
+[html] view plain copy
+
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+        <modelVersion>4.0.0</modelVersion>  
+        <groupId>com.rvho</groupId>  
+        <artifactId>jaxwsserver</artifactId>  
+        <version>0.0.1-SNAPSHOT</version>  
+        <packaging>war</packaging>  
+      
+        <properties>  
+            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  
+            <maven.compiler.encoding>UTF-8</maven.compiler.encoding>  
+        </properties>  
+        <dependencies>  
+            <!-- JAXWS-RI -->  
+            <dependency>  
+                <groupId>com.sun.xml.ws</groupId>  
+                <artifactId>jaxws-rt</artifactId>  
+                <version>2.2.10</version>  
+            </dependency>  
+        </dependencies>  
+    </project>  

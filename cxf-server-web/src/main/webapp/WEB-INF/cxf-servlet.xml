@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns:soap="http://cxf.apache.org/bindings/soap"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd 
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+    <jaxws:server id="cxfService" 
+    	serviceClass="cxf.service.CxfIService" 
+    	address="/cxf_service">
+        <jaxws:serviceBean>
+            <bean class="cxf.service.impl.CxfServiceImpl" />
+        </jaxws:serviceBean>
+    </jaxws:server>
+    <jaxws:server id="jwsService" 
+    	serviceClass="jws.service.JwsIService" 
+   		address="/jws_service">
+        <jaxws:serviceBean>
+            <bean class="jws.service.impl.JwsServiceImpl" />
+        </jaxws:serviceBean>
+    </jaxws:server>
+     <jaxws:server id="calService" 
+    	serviceClass="cxf.service.CaIService" 
+   		address="/cal_service">
+        <jaxws:serviceBean>
+            <bean class="cxf.service.impl.CalServiceImpl" />
+        </jaxws:serviceBean>
+    </jaxws:server>
+</beans>

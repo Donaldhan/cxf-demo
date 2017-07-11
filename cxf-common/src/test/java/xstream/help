@@ -1,0 +1,10 @@
+ 别名配置包含三种情况：
+ 1、类别名，用alias(String name, Class type)。
+ 2、类成员别名，用aliasField(String alias, Class definedIn, String fieldName)
+ 3、类成员作为属性别名，用 aliasAttribute(Class definedIn, String attributeName, String alias)，单独命名没有意义，还要通过 
+
+ useAttributeFor(Class definedIn, String fieldName) 应用到某个类上。
+ 别名的配置是非常重要的，但是其中有些细节问题很重要，在例子中会专门做详细说明。
+ 另外还有不太常用的方法：
+      addImplicitCollection(Class ownerType, String fieldName)，去掉集合类型生成xml的父节点。
+      registerConverter(Converter converter) ，注册一个转换器。 

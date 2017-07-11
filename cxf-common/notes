@@ -1,0 +1,15 @@
+cxf-common是公共基础包，有两种引用方式：
+1.静态引用，直接将cxf-common编译打包成jar，上传到自己的私有Nexus仓库中，并添加jar包依赖：
+<dependency> 
+	<groupId>org.donald</groupId> 
+	<artifactId>cxf-common</artifactId> 
+	<version>${cxf.demo.version}</version> 
+</dependency>
+2.动态引用，在项目的build path中添加project引用，并在POM中添加jar依赖：
+<dependency> 
+	<groupId>org.donald</groupId> 
+	<artifactId>cxf-common</artifactId> 
+	<version>${cxf.demo.version}</version> 
+</dependency>
+第二种方式的好处是，动公共基础项目有什么改变时，引用项目可以直接发现；第一种方式，公共基础包改变时，还要将jar上传到
+私服，并更新引用项目Maven依赖；强烈建议使用第二种方式。

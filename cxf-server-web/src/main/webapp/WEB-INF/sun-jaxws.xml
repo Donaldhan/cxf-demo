@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints 
+	xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+  <!--  注意这里的url-pattern，与web.xml中的Servlet的url-pattern
+   必须对应相同。 -->
+    <endpoint
+        name="jws_ws"
+        implementation="jws.service.impl.JwsServiceImpl"
+        url-pattern="/jws_services"/>
+   <!-- jws_test 和 cxf_test endpoint 实际相同都是为JAX_WS的SEI和SIB -->
+     <endpoint
+        name="cxf_ws"
+        implementation="cxf.service.impl.CxfServiceImpl"
+        url-pattern="/cxf_services"/>
+</endpoints>

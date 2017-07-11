@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.donald</groupId>
+    <artifactId>cxf-demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>cxf-server</artifactId>
+  <name>cxf-server</name>
+  <description>CXF Server</description>
+  <properties>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+  <dependencies>
+		<!-- get from your self sonatype nexus after jar jws-comm -->
+		<dependency> 
+			<groupId>org.donald</groupId> 
+			<artifactId>cxf-common</artifactId> 
+			<version>${cxf.demo.version}</version> 
+		</dependency>
+		 <!-- JAX-RS
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>${cxf.version}</version>
+        </dependency> 
+        -->
+       <!--  JAX-WS -->
+       <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency> 
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-simple</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+        <!-- Jetty is needed if you're are not using the CXFServlet -->
+       <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+  </dependencies>
+  <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<!--同时在properties配置maven.compiler.source和
+					maven.compiler.target 见properties标签-->
+					<source>1.7</source><!-- 源代码使用的开发版本 -->
+					<target>1.7</target><!-- 需要生成的目标class文件的编译版本 -->
+
+					<fork>true</fork> <!-- fork is enable,用于明确表示编译版本配置的可用 -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

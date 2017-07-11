@@ -1,0 +1,7 @@
+Exception in thread "main" org.apache.cxf.common.i18n.UncheckedException: No operation was found with the name {http://impl.service.jws/}sum.
+	at org.apache.cxf.endpoint.ClientImpl.invoke(ClientImpl.java:289)
+	at org.apache.cxf.endpoint.ClientImpl.invoke(ClientImpl.java:283)
+	at cxf.bootstrap.CxfDynamicClientOnJwsRtWeb.main(CxfDynamicClientOnJwsRtWeb.java:36)
+注意：利用第三方软（cxf）件动态调用WebService，容易出现这个问题，
+这个问题因为SIB和SEI类的targetNamespace统一导致的，解决方法
+SIB的targetNamespace的命名空间为SEI对应的命名空间targetNamespace相同即可。

@@ -1,0 +1,73 @@
+实现一个基于JWS的WebService项目（JWS API 实现，不借助任何WebService框架）的过程：
+1.在服务器端，用户只需要通过Java语言定义远程调用所需要实现的接口
+SEI（service endpoint interface），并提供相关的实现类SIB(Service implementation Bean)；
+2.通过调用JAX-WS的“服务发布接口-api”就可以将其发布为WebService接口；
+3.在客户端，用户可以通过JAX-WS的API创建一个代理（用本地对象来替代远程的服务）
+来实现对于远程服务器端的调用。wsimport命令用于生成本地代理（即本地对象）；
+4.创建客户端类测试WebService接口。
+
+服务端设计：
+1.定义RPC接口；
+2.提供RPC接口实现；
+3.通过调用JAX-WS的服务发布接口-api，发布WebService接口。
+
+客户端设计：新创建一个项目，项目名称为jws-client （模拟异构（或不同）系统的交互）
+1.根据WebService URI，使用代理类生成命令-wsimport，生成本地代理类（即本地对象）；
+2.将生成的本地代理类(包括生成的包路径)拷贝到jws_client项目的src目录下；
+3.利用本地代理类，访问WebService接口。
+第一步和第二步可以合为一步，在client项目的src下执行如下命令：
+wsimport -d . -keep -encoding UTF-8 -verbose http://localhost:9091/ns?wsdl
+F:\MARseclipse\cxf-client\src\main\java\jws\boostrap>wsimport
+缺少 WSDL_URI
+
+
+wsimport用法: wsimport [options] <WSDL_URI>
+
+\其中 [options] 包括:
+  -b <path>                 指定 jaxws/jaxb 绑定文件或附加模式
+                            (每个 <path> 都必须具有自己的 -b)
+  -B<jaxbOption>            将此选项传递给 JAXB 模式编译器
+  -catalog <file>           指定用于解析外部实体引用的目录文件
+                            支持 TR9401, XCatalog 和 OASIS XML 目录格式。
+  -d <directory>            指定放置生成的输出文件的位置
+  -encoding <encoding>      指定源文件所使用的字符编码
+  -extension                允许供应商扩展 - 不按规范
+                            指定功能。使用扩展可能会
+                            导致应用程序不可移植或
+                            无法与其他实现进行互操作
+  -help                     显示帮助
+  -httpproxy:<host>:<port>  指定 HTTP 代理服务器 (端口默认为 8080)
+  -keep                     保留生成的文件
+  -p <pkg>                  指定目标程序包
+  -quiet                    隐藏 wsimport 输出
+  -s <directory>            指定放置生成的源文件的位置
+  -target <version>         按给定的 JAXWS 规范版本生成代码
+                            默认为 2.2, 接受的值为 2.0, 2.1 和 2.2
+                            例如, 2.0 将为 JAXWS 2.0 规范生成兼容的代码
+  -verbose                  有关编译器在执行什么操作的输出消息
+  -version                  输出版本信息
+  -wsdllocation <location>  @WebServiceClient.wsdlLocation 值
+  -clientjar <jarfile>      创建生成的 Artifact 的 jar 文件以及
+                            调用 Web 服务所需的 WSDL 元数据。
+  -generateJWS              生成存根 JWS 实现文件
+  -implDestDir <directory>  指定生成 JWS 实现文件的位置
+  -implServiceName <name>   生成的 JWS 实现的服务名的本地部分
+  -implPortName <name>      生成的 JWS 实现的端口名的本地部分
+
+\扩展:
+  -XadditionalHeaders              映射标头不绑定到请求或响应消息不绑定到
+                                   Java 方法参数
+  -Xauthfile                       用于传送以下格式的授权信息的文件:
+                                   http://username:password@example.org/stock?wsdl
+  -Xdebug                          输出调试信息
+  -Xno-addressing-databinding      允许 W3C EndpointReferenceType 到 Java 的绑定
+  -Xnocompile                      不编译生成的 Java 文件
+  -XdisableAuthenticator           禁用由 JAX-WS RI 使用的验证程序,
+                                   将忽略 -Xauthfile 选项 (如果设置)
+  -XdisableSSLHostnameVerification 在提取 wsdl 时禁用 SSL 主机名
+                                   验证
+
+\示例:
+  wsimport stock.wsdl -b stock.xml -b stock.xjb
+  wsimport -d generated http://example.org/stock?wsdl
+  wsimport -d . -keep -encoding UTF-8 -verbose http://localhost:9091/ns?wsdl

@@ -1,0 +1,2 @@
+测试JAX-WS，bootstrap对应测试用例，
+service包下的类为wsimport生成成的本地代理对象。

@@ -1,0 +1,13 @@
+######################################################
+cxf.service和jws.service两个包主要用于定义WebService接口，
+两个WebService定义和功能相同，cxf.service为jws.service的副本；
+jws.service测试JAX-WS所用的WebService接口；
+cxf.service测试CXF所用的WebService接口；
+SEI定义在cxf.service和jws.service包下;
+SIB定义在cxf.service.impl和jws.service.impl包下;
+cxf-client项目会用到此项目。
+################################################
+WebService（Tomcat）为JAX_WS_RI发布方式，
+配置文件为web_jws.xml,sun-jaxws.xml;
+WebService（Tomcat）为CXF(spring Web)发布方式，
+配置文件为web_cxf.xml,cxf-servlet.xml。

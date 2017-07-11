@@ -1,0 +1,8 @@
+cxf.bootstrap包下的测试用例:
+1.对于CxfClient和CxfDynamicClient,要配合cxf-server项目调试；
+2.对于*JwsRiWeb*测试用例，要配合cxf_server-web项目使用，
+WebService（Tomcat）为JAX_WS_RI发布方式，
+配置文件为web_jws.xml,sun-jaxws.xml;
+3.对于*JwsRiWeb*测试用例，要配合cxf-server-web项目使用，
+WebService（Tomcat）为CXF(spring Web)发布方式，
+配置文件为web_cxf.xml,cxf-servlet.xml;
