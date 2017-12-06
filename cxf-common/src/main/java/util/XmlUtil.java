@@ -5,6 +5,10 @@ import java.util.Map.Entry;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import util.converter.DateExtConverter;
+import util.converter.DoubleExtConverter;
+import util.converter.IntegerExtConverter;
 /**
  * 对象与Xml字符串转化工具
  * @author donald
@@ -15,6 +19,9 @@ public class XmlUtil {
 	private static final XStream xstream;
 	static {
 		xstream = new XStream(new DomDriver("utf-8"));
+		xstream.registerConverter(new DoubleExtConverter());
+		xstream.registerConverter(new DateExtConverter());
+		xstream.registerConverter(new IntegerExtConverter());
 	}
 	/**
 	 * xml文件头
