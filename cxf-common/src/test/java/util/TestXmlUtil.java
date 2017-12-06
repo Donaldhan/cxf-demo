@@ -1,13 +1,10 @@
-package xstream;
+package util;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import entity.Address;
 import entity.Animal;
@@ -16,25 +13,17 @@ import entity.Friends;
 import entity.Person;
 import entity.Pets;
 import entity.Phone;
-import util.JsonUtil;
-
-
 /**
- * 测试XStream
+ * 测试XmlUtil工具类
  * @author donald
- * 2017年7月9日
- * 下午11:22:17
+ * 2017年7月10日
+ * 上午9:34:59
  */
-public class testXStream {
-	private static final Logger log = LoggerFactory.getLogger(testXStream.class);
-	private static final XStream xstream;
-	static {
-		xstream = new XStream(new DomDriver("utf-8"));
-	}
+public class TestXmlUtil {
+	private static final Logger log = LoggerFactory.getLogger(TestXmlUtil.class);
 	public static void main(String[] args) {
 		testObjToXml();
 		testXmlToObj();
-		
 	}
 	/**
 	 * 测试转换对象为XML
@@ -60,10 +49,8 @@ public class testXStream {
 		animalList.add(new Animal("dog",1));
 		animalList.add(new Animal("cat",2));
 		donald.setPet(new Pets(animalList));
-		//处理类的XStream注解
-		xstream.processAnnotations(Person.class);
 		log.info("====person to xml:");
-		System.out.println(xstream.toXML(donald));
+		System.out.println(XmlUtil.toXml(donald));
 	}
 	/**
 	 *测试xml字符串转换为对象
@@ -107,8 +94,7 @@ public class testXStream {
 				    "</pet>"+
 				  "</pets>"+
 				"</person>";
-		xstream.processAnnotations(Person.class);
-		Person donald = (Person) xstream.fromXML(personXml);
+		Person donald = (Person) XmlUtil.toBean(personXml,Person.class);
 		log.info("====xml to person:"+JsonUtil.toJson(donald));
 	}
 }
